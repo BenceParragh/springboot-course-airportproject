@@ -23,7 +23,8 @@ public class SmartEmployeeService implements EmployeeService {
 
 		Years yearsConfig = config.getRaise().getSmart().getYears();
 
-		long yearsWorked = Duration.between(start, LocalDateTime.now()).toDays() / 365;
+		double yearsWorked = Duration.between(start, LocalDateTime.now()).toDays() / 365.0;
+		System.out.println(yearsWorked);
 
 		if (yearsWorked < yearsConfig.getLow()) {
 			return yearsConfig.getLowPercent();
