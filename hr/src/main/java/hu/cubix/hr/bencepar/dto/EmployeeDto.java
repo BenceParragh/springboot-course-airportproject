@@ -4,6 +4,7 @@ import java.time.LocalDate;
 
 public class EmployeeDto {
 
+	private String name;
 	private Long id;
 	private String job;
 	private int salary;
@@ -13,7 +14,8 @@ public class EmployeeDto {
 		
 	}
 
-	public EmployeeDto(long id, String job, int salary, LocalDate startTimestamp) {
+	public EmployeeDto(String name, long id, String job, int salary, LocalDate startTimestamp) {
+		this.name = name;
 		this.id = id;
 		this.job = job;
 		this.salary = salary;
@@ -50,6 +52,14 @@ public class EmployeeDto {
 
 	public void setStartTimestamp(LocalDate startTimestamp) {
 		this.startTimestamp = startTimestamp;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
 	}
 
 }
