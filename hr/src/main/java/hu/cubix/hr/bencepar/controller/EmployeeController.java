@@ -5,7 +5,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
-
+import hu.cubix.hr.bencepar.service.EmployeeService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,10 +17,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import hu.cubix.hr.bencepar.dto.EmployeeDto;
+import hu.cubix.hr.bencepar.model.Employee;
 
 @RestController
 @RequestMapping("/api/employees")
 public class EmployeeController {
+
+    private final EmployeeService employeeService;
 
 	private Map<Long, EmployeeDto> employees = new HashMap<>();
 
@@ -28,6 +31,10 @@ public class EmployeeController {
 		employees.put(16018045L,
 				new EmployeeDto("Parragh Bence", 16018045, "Field Application Specialist", 850000, LocalDate.of(2024, 12, 9)));
 	}
+
+    EmployeeController(EmployeeService employeeService) {
+        this.employeeService = employeeService;
+    }
 
 	@GetMapping
 	public List<EmployeeDto> findAll() {
@@ -65,6 +72,11 @@ public class EmployeeController {
 	@DeleteMapping("/{id}")
 	public void delete(@PathVariable long id) {
 		employees.remove(id);
+	}
+	
+	@PostMapping("/payRaise")
+	public int getPayRaisePercent(@RequestBody Employee employee) {
+		return employeeService.getPayRaisePercent(employee);
 	}
 
 }
