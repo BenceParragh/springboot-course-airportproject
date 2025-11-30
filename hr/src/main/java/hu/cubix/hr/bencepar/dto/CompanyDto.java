@@ -1,51 +1,58 @@
 package hu.cubix.hr.bencepar.dto;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonView;
 
 public class CompanyDto {
 
-	private Long companyId;
-	private Long registrationNumber;
-	private String companyName;
+	@JsonView(Views.BaseData.class)
+	private Long id;
+	@JsonView(Views.BaseData.class)
+	private int registrationNumber;
+	@JsonView(Views.BaseData.class)
+	private String name;
+	@JsonView(Views.BaseData.class)
 	private String address;
 
 	private List<EmployeeDto> employees = new ArrayList<>();
 
-	public CompanyDto(Long companyId, Long registrationNumber, String companyName, String address,
-			List<EmployeeDto> employees) {
-		this.companyId = companyId;
+	public CompanyDto() {
+
+	}
+
+	public CompanyDto(Long id, int registrationNumber, String name, String address, List<EmployeeDto> employees) {
+		this.id = id;
 		this.registrationNumber = registrationNumber;
-		this.companyName = companyName;
+		this.name = name;
 		this.address = address;
 		this.employees = employees;
 
 	}
 
-	public Long getCompanyId() {
-		return companyId;
+	public Long getId() {
+		return id;
 	}
 
-	public void setCompanyId(Long companyId) {
-		this.companyId = companyId;
+	public void setId(Long id) {
+		this.id = id;
 	}
 
-	public Long getRegistrationNumber() {
+	public int getRegistrationNumber() {
 		return registrationNumber;
 	}
 
-	public void setRegistrationNumber(Long registrationNumber) {
+	public void setRegistrationNumber(int registrationNumber) {
 		this.registrationNumber = registrationNumber;
 	}
 
-	public String getCompanyName() {
-		return companyName;
+	public String getName() {
+		return name;
 	}
 
-	public void setCompanyName(String companyName) {
-		this.companyName = companyName;
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	public String getAddress() {
